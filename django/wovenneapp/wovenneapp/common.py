@@ -19,10 +19,13 @@ INSTALLED_APPS = [
     # Password resets.
     'password_reset',
 
+    # Project apps
     'app',
+    'wovenneapp',
+    'pages',
 
     # Storage backends.
-    'storages'
+    'storages',
 ]
 
 MIDDLEWARE_CLASSES = [
