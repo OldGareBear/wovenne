@@ -1,3 +1,6 @@
+DEBUG = False
+TEMPLATE_DEBUG = False
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -83,7 +86,21 @@ else:
         'django.template.loaders.eggs.Loader',
     ]
 
+# Internationalization
+# https://docs.djangoproject.com/en/1.9/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
 from logging_settings import *
-from analytical_settings import *
 from pipeline_settings import *
-from cache_settings import *
+
+# from analytical_settings import *
+# from cache_settings import *
