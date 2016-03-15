@@ -12,20 +12,26 @@ class Listing(models.Model):
     photo = models.ImageField(upload_to=b'static/app/img/listings/', help_text='Min size (90 x 58)px', null=True, blank=True)
     listing_type = models.ForeignKey('ListingType', related_name='type')
 
-    def to_json(self):
-        return json.dumps({
+    def to_dict(self):
+        return {
             'poster': self.poster,
             'title': self.title,
             'description': self.description,
             'type': self.listing_type
-        })
+        }
+
+    def to_json(self):
+        return json.dumps(self.to_dict())
 
 
 class ListingType(models.Model):
 
     name = models.CharField(max_length=256)
 
-    def to_json(self):
-        return json.dumps({
+    def to_dict(self):
+        return {
             'name': self.name
-        })
+        }
+
+    def to_json(self):
+        return json.dumps(self.to_dict())
