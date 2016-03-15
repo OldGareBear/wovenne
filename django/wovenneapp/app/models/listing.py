@@ -10,7 +10,8 @@ class Listing(models.Model):
     title = models.CharField(max_length=256)
     description= models.CharField(max_length=1024)
     photo = models.ImageField(upload_to=b'static/app/img/listings/', help_text='Min size (90 x 58)px', null=True, blank=True)
-    listing_type = models.ForeignKey('ListingType', related_name='type')
+    type = models.ForeignKey('ListingType', related_name='listings')
+    category = models.ForeignKey('ListingCategory', related_name='listings')
 
     def to_dict(self):
         return {
@@ -25,6 +26,19 @@ class Listing(models.Model):
 
 
 class ListingType(models.Model):
+
+    name = models.CharField(max_length=256)
+
+    def to_dict(self):
+        return {
+            'name': self.name
+        }
+
+    def to_json(self):
+        return json.dumps(self.to_dict())
+
+
+class ListingCategory(models.Model):
 
     name = models.CharField(max_length=256)
 
