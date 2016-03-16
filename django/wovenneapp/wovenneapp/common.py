@@ -46,7 +46,7 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 STATICFILES_FINDERS = [
     # Default finders.
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finder'
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 ]
 
 MEDIA_ROOT = '/var/www/wovenne.com/media'
