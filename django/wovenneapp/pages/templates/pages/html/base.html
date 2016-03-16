@@ -17,7 +17,7 @@
     <header id="header" class="header navbar-fixed-top" {% block extra_header_attrs %}{% endblock %}>
             <div class="container">
                 <h1 class="logo">
-                    <a href="{% url 'wovenne_index' %}"><img class="img-responsive top-logo" src="{% static 'rustic_cut/img/rustic-cut-logo-clear-background.png'%}" alt="" /></a>
+                    <a href="{% url 'pages_index' %}"><img class="img-responsive top-logo" src="{% static 'pages/img/wovenne-banner.gif'%}" alt="" /></a>
                 </h1><!--//logo-->
                 <nav class="main-nav navbar-right" role="navigation">
                     <div class="navbar-header">
@@ -30,8 +30,8 @@
                     </div><!--//navbar-header-->
                     <div id="navbar-collapse" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="nav-item"><a href="{% url 'wovenne_index' %}">Home</a></li>
-                            <li class="nav-item"><a href="{% url 'wovenne_about' %}">About</a></li>
+                            <li class="nav-item"><a href="{% url 'pages_index' %}">Home</a></li>
+                            <li class="nav-item"><a href="{% url 'pages_about' %}">About</a></li>
                         </ul><!--//nav-->
                     </div><!--//navabr-collapse-->
                 </nav><!--//main-nav-->
@@ -48,8 +48,7 @@
                         <div class="footer-col-inner">
 
                             <ul class="list-unstyled">
-                                <li><a href="{% url 'rustic_cut_about' %}"><i class="fa fa-caret-right"></i>Who we are</a></li>
-                                <li><a href="{% url 'rustic_cut_products' %}" target="_blank"><i class="fa fa-caret-right"></i>Products</a></li>
+                                <li><a href="{% url 'pages_about' %}"><i class="fa fa-caret-right"></i>Who we are</a></li>
                             </ul>
                         </div><!--//footer-col-inner-->
                     </div><!--//foooter-col-->
@@ -57,16 +56,15 @@
                         <div class="footer-col-inner">
 
                             <ul class="list-unstyled">
-                                <li><a href="{% url 'rustic_cut_contact' %}"><i class="fa fa-caret-right"></i>Contact us</a></li>
+                                <li><a href="{% url 'pages_terms' %}"><i class="fa fa-caret-right"></i>Contact us</a></li>
                             </ul>
                         </div><!--//footer-col-inner-->
                     </div><!--//foooter-col-->
                     <div class="footer-col connect col-md-6 col-sm-12 col-xs-12">
                         <div class="footer-col-inner">
                             <ul class="social list-inline">
-                                <li><a mailto="rusticcutwoodworking@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
-                                <li><a href="//www.facebook.com/RusticCutWoodworking" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="//www.etsy.com/shop/RusticCutWoodworking?ele=shop_open" target="_blank"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a mailto="kirziasteele@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                                <li><a href="//www.facebook.com/Wovenne" target="_blank"><i class="fa fa-facebook"></i></a></li>
                             </ul>
                         </div><!--//footer-col-inner-->
                     </div><!--//foooter-col-->
