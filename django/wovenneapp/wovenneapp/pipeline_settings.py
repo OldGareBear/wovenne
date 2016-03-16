@@ -3,7 +3,7 @@
 PIPELINE_CSS = {
     'pages': {
         'source_filenames': (
-            'pages_v3/css/styles.css',
+            'pages/css/styles.css',
         ),
         'output_filename': 'pages.css'
     },

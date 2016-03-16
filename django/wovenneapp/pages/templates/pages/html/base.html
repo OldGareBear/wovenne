@@ -12,12 +12,13 @@
     <link href='//fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100' rel='stylesheet' type='text/css'>
     <link href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
+    <link href="{% static 'pages/css/pages.css' %}" rel='stylesheet' type='text/css'>
 </head>
 <body>
     <header id="header" class="header navbar-fixed-top" {% block extra_header_attrs %}{% endblock %}>
             <div class="container">
                 <h1 class="logo">
-                    <a href="{% url 'pages_index' %}"><img class="img-responsive top-logo" src="{% static 'pages/img/wovenne-banner.gif'%}" alt="" /></a>
+                    <a href="{% url 'pages_index' %}"><img class="img-responsive top-logo" src="{% static 'pages/img/banner.gif'%}" alt="" /></a>
                 </h1><!--//logo-->
                 <nav class="main-nav navbar-right" role="navigation">
                     <div class="navbar-header">
