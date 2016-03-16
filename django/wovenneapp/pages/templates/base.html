@@ -1,0 +1,84 @@
+{% load staticfiles %}
+{% load compressed %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wovenne{% endblock %}</title>
+
+    <link rel="icon" type="image/png" href="{% static 'pages/img/favicon.png' %}">
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100' rel='stylesheet' type='text/css'>
+    <link href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
+</head>
+<body>
+    <header id="header" class="header navbar-fixed-top" {% block extra_header_attrs %}{% endblock %}>
+            <div class="container">
+                <h1 class="logo">
+                    <a href="{% url 'wovenne_index' %}"><img class="img-responsive top-logo" src="{% static 'rustic_cut/img/rustic-cut-logo-clear-background.png'%}" alt="" /></a>
+                </h1><!--//logo-->
+                <nav class="main-nav navbar-right" role="navigation">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse" onclick="if ($('#navbar-collapse').hasClass('in')) {$('#navbar-collapse').removeClass('in')} else {$('#navbar-collapse').addClass('in')};">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button><!--//nav-toggle-->
+                    </div><!--//navbar-header-->
+                    <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item"><a href="{% url 'wovenne_index' %}">Home</a></li>
+                            <li class="nav-item"><a href="{% url 'wovenne_about' %}">About</a></li>
+                        </ul><!--//nav-->
+                    </div><!--//navabr-collapse-->
+                </nav><!--//main-nav-->
+            </div><!--//container-->
+        </header><!--//header-->
+
+        {% block content %}{% endblock %}
+
+        <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col links col-md-2 col-sm-4 col-xs-12">
+                        <div class="footer-col-inner">
+
+                            <ul class="list-unstyled">
+                                <li><a href="{% url 'rustic_cut_about' %}"><i class="fa fa-caret-right"></i>Who we are</a></li>
+                                <li><a href="{% url 'rustic_cut_products' %}" target="_blank"><i class="fa fa-caret-right"></i>Products</a></li>
+                            </ul>
+                        </div><!--//footer-col-inner-->
+                    </div><!--//foooter-col-->
+                    <div class="footer-col links col-md-2 col-sm-4 col-xs-12 sm-break">
+                        <div class="footer-col-inner">
+
+                            <ul class="list-unstyled">
+                                <li><a href="{% url 'rustic_cut_contact' %}"><i class="fa fa-caret-right"></i>Contact us</a></li>
+                            </ul>
+                        </div><!--//footer-col-inner-->
+                    </div><!--//foooter-col-->
+                    <div class="footer-col connect col-md-6 col-sm-12 col-xs-12">
+                        <div class="footer-col-inner">
+                            <ul class="social list-inline">
+                                <li><a mailto="rusticcutwoodworking@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                                <li><a href="//www.facebook.com/RusticCutWoodworking" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="//www.etsy.com/shop/RusticCutWoodworking?ele=shop_open" target="_blank"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div><!--//footer-col-inner-->
+                    </div><!--//foooter-col-->
+                    <div class="clearfix"></div>
+                </div><!--//row-->
+            </div><!--//container-->
+        </div><!--//footer-content-->
+        <div class="bottom-bar">
+            <div class="container">
+                <small class="copyright">Copyright @ 2016 Wovenne</small>
+            </div><!--//container-->
+        </div><!--//bottom-bar-->
+    </footer><!--//footer-->
+</body>
+</html>
