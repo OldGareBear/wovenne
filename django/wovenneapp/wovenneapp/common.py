@@ -1,5 +1,19 @@
 DEBUG = False
-TEMPLATE_DEBUG = False
+
+TEMPLATES = {
+    'TEMPLATE_DEBUG': False,
+    'TEMPLATE_CONTEXT_PROCESSORS': (
+        'django.core.context_processors.request',
+        'django.contrib.auth.context_processors.auth',
+        'django.contrib.messages.context_processors.messages',
+    ),
+    'TEMPLATE_LOADERS': [
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+        'django.template.loaders.eggs.Loader',
+    ]
+
+}
 
 ALLOWED_HOSTS = []
 
@@ -51,12 +65,6 @@ STATICFILES_FINDERS = [
 
 MEDIA_ROOT = '/var/www/wovenne.com/media'
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.request',
-    'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
-)
-
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -66,28 +74,28 @@ SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
 # Pipeline (compression) settings.
 PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yui.UglifyJSCompressor'
 
-if TEMPLATE_DEBUG:
-    TEMPLATE_LOADERS = [
-        # Default values.
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-
-        # Custom values.
-        'django.template.loaders.eggs.Loader',
-    ]
-
-else:
-    # Template loaders.
-    TEMPLATE_LOADERS = [
-        # Default values.
-        ('django.template.loaders.cached.Loader', (
-            'django.template.loaders.filesystem.Loader',
-            'django.template.loaders.app_directories.Loader',
-        )),
-
-        # Custom values.
-        'django.template.loaders.eggs.Loader',
-    ]
+# if TEMPLATE_DEBUG:
+#     TEMPLATE_LOADERS = [
+#         # Default values.
+#         'django.template.loaders.filesystem.Loader',
+#         'django.template.loaders.app_directories.Loader',
+#
+#         # Custom values.
+#         'django.template.loaders.eggs.Loader',
+#     ]
+#
+# else:
+#     # Template loaders.
+#     TEMPLATE_LOADERS = [
+#         # Default values.
+#         ('django.template.loaders.cached.Loader', (
+#             'django.template.loaders.filesystem.Loader',
+#             'django.template.loaders.app_directories.Loader',
+#         )),
+#
+#         # Custom values.
+#         'django.template.loaders.eggs.Loader',
+#     ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

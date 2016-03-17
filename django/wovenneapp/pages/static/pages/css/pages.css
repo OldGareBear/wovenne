@@ -3607,6 +3607,10 @@ select {
     text-align: center;
 }
 
+.text-center {
+  text-align: center;
+}
+
 @media (max-width: 991px) {
     .col-md-4.right-sidebar {
         margin-top: 10%;

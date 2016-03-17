@@ -29,7 +29,7 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
 
     # App
-    url(r'app^/', include('app.urls')),
+    url(r'^app/', include('app.urls')),
 
 ) + static('/static/', document_root=settings.STATIC_ROOT) \
   + static('/media/', document_root=settings.MEDIA_ROOT)

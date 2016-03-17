@@ -2,4 +2,69 @@
 {% load staticfiles %}
 
 {% block content %}
+    <div class="bg-slider-wrapper">
+        <div class="flexslider bg-slider">
+            <ul class="slides" style="padding-left:0;">
+                <li class="slide slide-1" style="background:#253340 {% if featured_listing%} url({{ featured_listing.photo.url }}) {% else %} url({% static 'pages/img/background.jpg'%}) {% endif %} no-repeat 50% top;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;"></li>
+            </ul>
+        </div>
+    </div><!--//bg-slider-wrapper-->
+
+    <section class="promo section section-on-bg">
+        <div class="container text-center">
+            <h2 class="title">Welcome to the new sharing economy</h2>
+            <p class="intro">Check out
+                <b>
+                <a class="featured" href="{% if featured_listing %}listings/{{ featured_listing.id }}{% else %}{% url 'app_index' %}{% endif %}" target="_blank">
+                    {% if featured_product %}{{ featured_listing.user.first_name }}'s{{ featured_listing.name }}
+                    {% else %}Kirzia's Backpack{% endif %}
+                </a>
+                </b>
+            </p>
+        </div><!--//container-->
+
+    </section><!--//promo-->
+
+    <div class="sections-wrapper">
+        <!-- ******Testimonials Section****** -->
+        <section class="section testimonials">
+            <div class="container">
+                <h2 class="title text-center">What are people saying about Wovenne?</h2>
+                <div id="testimonials-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#testimonials-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#testimonials-carousel" data-slide-to="1"></li>
+                        <li data-target="#testimonials-carousel" data-slide-to="2"></li>
+                    </ol><!--//carousel-indicators-->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="content">
+                                <blockquote>
+                                <p><i class="fa fa-quote-left"></i></p>
+                                </blockquote>
+                                <p class="source"> <br /><span class="title"></span></p>
+                            </div><!--//content-->
+                        </div><!--//item-->
+                        <div class="item">
+                            <div class="content">
+                                <blockquote>
+                                <p><i class="fa fa-quote-left"></i></p>
+                                </blockquote>
+                                <p class="source"><br /><span class="title"></span></p>
+                            </div><!--//content-->
+                        </div><!--//item-->
+                        <div class="item">
+                            <div class="content">
+                                <blockquote>
+                                <p><i class="fa fa-quote-left"></i></p>
+                                </blockquote>
+                                <p class="source"><br /><span class="title"></span></p>
+                            </div><!--//content-->
+                        </div><!--//item-->
+                    </div><!--//carousel-inner-->
+
+                </div><!--//carousel-->
+            </div><!--//container-->
+        </section><!--//testimonials-->
+    </div>
 {% endblock %}
