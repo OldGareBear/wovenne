@@ -3,7 +3,9 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns('',
 
     url('^$', 'app.views.index', name='app_index'),
-    url('^profile$', 'app.views.profile', name='app_profile'),
+    url('^profile/$', 'app.views.profile', name='app_profile'),
+
+    url('^login/$', 'app.views.login', name='app_login'),
 
     # Listing crud operations
     url('^listing/new', 'app.views.new_listing', name='app_new_listing'),

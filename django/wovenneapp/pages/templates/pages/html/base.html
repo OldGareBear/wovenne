@@ -11,10 +11,11 @@
     <link href='//fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100' rel='stylesheet' type='text/css'>
     <link href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css">
     <script type="text/javascript" src="{%static 'pages/js/pages.js' %}"></script>
     <link href="{% static 'pages/css/pages.css' %}" rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body style="margin:0;">
     <header id="header" class="header navbar-fixed-top" {% block extra_header_attrs %}{% endblock %}>
             <div class="container">
                 <h1 class="logo">
@@ -31,8 +32,8 @@
                     </div><!--//navbar-header-->
                     <div id="navbar-collapse" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="nav-item"><a href="{% url 'pages_index' %}">Home</a></li>
                             <li class="nav-item"><a href="{% url 'pages_about' %}">About</a></li>
+                            <li class="nav-item button"><a href="{% url 'app_login' %}">Login | Join</a></li>
                         </ul><!--//nav-->
                     </div><!--//navabr-collapse-->
                 </nav><!--//main-nav-->

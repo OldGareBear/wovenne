@@ -5,6 +5,12 @@ from django.template import RequestContext
 from app.models import Listing
 
 
+def login(request):
+    return render_to_response("app/html/login.html",
+                              {},
+                              context_instance=RequestContext(request))
+
+
 @login_required
 def index(request):
     return render_to_response("app/html/index.html",
