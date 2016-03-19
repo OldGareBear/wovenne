@@ -3415,6 +3415,15 @@ select {
     -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   }
+  .header.colored {
+    background: rgba(9, 149, 74, .75);
+    z-index: 1000;
+    height: 75px;
+    top: 0;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  }
   .header.scrolled h1.logo a {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -3622,6 +3631,12 @@ select {
     margin-top: 7px;
     background: #fff;
   }
+
+.section.education img {
+  position: relative;
+  top: 75px;
+  width: 100%;
+}
 
 @media (max-width: 991px) {
     .col-md-4.right-sidebar {

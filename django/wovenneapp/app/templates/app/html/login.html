@@ -37,7 +37,7 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '1557859541209599',
+    appId      : '1557860587876161',
     cookie     : true,  // enable cookies to allow the server to access
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -74,12 +74,32 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+      console.log(response);
+      document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+
+      console.log('{{request}}');
+
+      $.ajax({
+        url: '//{{ host }}{% url "app_profile" %}',
+        data: response,
+        type: 'POST',
+        headers: { "X-CSRFToken": getCookie("csrftoken") }
+      })
     });
+  }
+
+  function getCookie(c_name) {
+    if (document.cookie.length > 0) {
+      c_start = document.cookie.indexOf(c_name + "=");
+      if (c_start != -1) {
+        c_start = c_start + c_name.length + 1;
+        c_end = document.cookie.indexOf(";", c_start);
+        if (c_end == -1) c_end = document.cookie.length;
+        return unescape(document.cookie.substring(c_start,c_end));
+      }
+    }
+    return "";
   }
 </script>
 
@@ -88,9 +108,14 @@
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+<div class="sections-wrapper">
+        <!-- ******Testimonials Section****** -->
+        <section class="section testimonials">
+            <div class="container">
+                <h2 class="title text-center">Login through Facebook to share with your friends</h2>
+                <fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();">
+                </fb:login-button>
+        </section><!--//testimonials-->
 
 <div id="status">
 </div>

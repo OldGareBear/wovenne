@@ -1,0 +1,16 @@
+{% extends "pages/html/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <script>
+        (function(){
+            $('#header').addClass('colored');
+        })();
+    </script>
+
+    <section class="section education">
+        <div class="container">
+            <img src="{% static 'pages/img/WovenneAboutGraph.png'%}">
+        </div><!--//container-->
+    </section><!--//testimonials-->
+{% endblock %}

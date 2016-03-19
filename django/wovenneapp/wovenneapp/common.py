@@ -3,8 +3,8 @@ DEBUG = False
 TEMPLATES = {
     'TEMPLATE_DEBUG': False,
     'TEMPLATE_CONTEXT_PROCESSORS': (
-        'django.core.context_processors.request',
-        'django.contrib.auth.context_processors.auth',
+        'django.template.context_processors.request',
+        'django.template.auth.context_processors.auth',
         'django.contrib.messages.context_processors.messages',
     ),
     'TEMPLATE_LOADERS': [
@@ -112,6 +112,5 @@ USE_TZ = True
 
 from logging_settings import *
 from pipeline_settings import *
-
+from cache_settings import *
 # from analytical_settings import *
-# from cache_settings import *

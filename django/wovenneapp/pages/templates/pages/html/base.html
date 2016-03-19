@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css">
     <script type="text/javascript" src="{%static 'pages/js/pages.js' %}"></script>
     <link href="{% static 'pages/css/pages.css' %}" rel='stylesheet' type='text/css'>
+    {% block extra_js %}{% endblock %}
 </head>
 <body style="margin:0;">
     <header id="header" class="header navbar-fixed-top" {% block extra_header_attrs %}{% endblock %}>
