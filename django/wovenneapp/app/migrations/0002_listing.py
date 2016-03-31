@@ -31,7 +31,8 @@ class Migration(migrations.Migration):
             name='UserProfile',
             fields=[
                 ('user', models.OneToOneField(primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
-                ('facebook_id', models.IntegerField(default=1, unique=True)),
+                ('facebook_id', models.IntegerField(unique=True)),
+                ('facebook_token', models.CharField(max_length=300, null=True, blank=True)),
             ],
             options={
             },

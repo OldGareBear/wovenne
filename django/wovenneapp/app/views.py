@@ -76,6 +76,8 @@ def _get_access_token(request):
     fb = FacebookAPI(settings.FB_CLIENT_ID, settings.FB_SECRET)
     return fb.get_long_lived_token(short_lived_token)
 
-def _get_or_create_user(request):
-    user_profile = UserProfile.objects.get_or_create()
+def _get_or_create_user(request, access_token):
+    post_data = request.POST
+    logging.info(post_data)
+    # user_profile = UserProfile.objects.get(facebook_id=)
 

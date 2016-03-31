@@ -19,7 +19,8 @@ class FacebookAPI(object):
                              client_secret=self.client_secret,
                              fb_exchange_token=short_lived_token)
         response = requests.get(uri)
-        return response.content.get('access_token') if response.ok else None
+        response_json = response.json()
+        return response_json.get('access_token') if response.ok else None
 
     def _endpoint(self, service, **kwargs):
         uri = urlparse.urljoin(self.API_URI_BASE, service)
