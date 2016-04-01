@@ -1,14 +1,13 @@
 import logging
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
 
 from app.models import Listing, UserProfile
 from facebook import FacebookAPI
-
-User = settings.AUTH_USER_MODEL
 
 
 def login(request):
@@ -78,6 +77,16 @@ def _get_access_token(request):
 
 def _get_or_create_user(request, access_token):
     post_data = request.POST
-    logging.info(post_data)
-    # user_profile = UserProfile.objects.get(facebook_id=)
+    facebook_id = post_data['authResponse[userID]']
+    user_profile = UserProfile.objects.filter(facebook_id=facebook_id).first()
+    if not user_profile:
+        # name = post_data['name'][0]
+        id = post_data['id'][0]
+        user = User.objects.create_user(id)
+        logging.info(id)
+        logging.info(user)
+        user_profile = UserProfile.objects.create(facebook_id=facebook_id, user=user)
+        logging.info(user_profile)
+
+
 
