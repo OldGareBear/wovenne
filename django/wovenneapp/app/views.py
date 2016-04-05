@@ -81,12 +81,9 @@ def _get_or_create_user(request, access_token):
     user_profile = UserProfile.objects.filter(facebook_id=facebook_id).first()
     if not user_profile:
         # name = post_data['name'][0]
-        id = post_data['id'][0]
-        user = User.objects.create_user(id)
-        logging.info(id)
-        logging.info(user)
-        user_profile = UserProfile.objects.create(facebook_id=facebook_id, user=user)
-        logging.info(user_profile)
+        user = User.objects.filter(username=facebook_id).first() or User.objects.create_user(facebook_id)
+        user_profile = UserProfile.objects.create(user_id=user.id, facebook_id=facebook_id, facebook_token=access_token)
+    return user_profile
 
 
 

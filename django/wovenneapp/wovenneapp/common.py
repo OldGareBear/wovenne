@@ -27,6 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Extensions framework.
+    'django_extensions',
+
     # Asset management.
     'pipeline',
 

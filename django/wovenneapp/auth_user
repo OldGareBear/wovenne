@@ -1,0 +1,1548 @@
+select * from django_migrations
+;
+delete from django_migrations where id in (324, 325);
+/dt
+\dt
+;
+drop table company
+;
+drop table company cascade;
+\d product
+drop column company_id from product;
+alter table product drop column company_id;
+\q
+select * from django_migrations where id > 300;
+delete from django_migrations where id=326;
+\q
+alter table product drop column company_id
+;
+\q
+update recipe set published=False where public_id='0b71f6f1f2454404ac7b8897fa083d71';
+update recipe set published=False where public_id='0b71f6f1f2454404ac7b8897fa083d71';
+update recipe set published=False where public_id='0b71f6f1f2454404ac7b8897fa083d71';
+update recipe set published=False where public_id='0b71f6f1f2454404ac7b8897fa083d71';
+update recipe set published=False where public_id='0b71f6f1f2454404ac7b8897fa083d71';
+\q
+\d partner;
+\q
+select * from django_migrations where 
+;
+\d django_migrations;
+select * from django_migrations where name like '%315%';
+select * from django_migrations where name like '%0315%';
+select * from django_migrations where name like '%0315%_up';
+select * from django_migrations where name like '0315%_up';
+select * from django_migrations where name like '0315_up%';
+delete from django_migrations where name like '0315_up%';
+\q
+select * from publisher where id=401;
+\q
+select * from publisher where id=501;
+select * from publisher where id=510;
+\q
+select * from partner where publisher_id=510;
+\q
+select count(*) from partner;
+select * from partner;
+q
+\q
+select * from partner limit 5;
+\q
+select count(*) from partner;
+\q
+select count(*) from publisher_hostname where hostname like '%whisk%';
+select * from publisher_hostname where hostname like '%whisk%';
+select * from publisher_hostname where hostname like '%whiskandshout%';
+\q
+select count(*) from partner;
+\q
+select count(*) from partner where logo is not null;
+select * from partner where logo is not null;
+select * from partner where logo is not null and log <> '';
+select * from partner where logo is not null and logo <> '';
+\q
+select * from partner where logo is not null and logo <> '';
+\q
+select * from partner where logo is not null and logo <> '';
+\q
+truncate table partner;
+\q
+\d partner;
+\d publisher;
+\d dt;
+\dt
+\d partner_publishers
+\q
+select * from django_migrations where name like '0326%';
+delete from django_migrations where name like '0326%';
+\q
+\d django_migrations
+select * from django_migrations order by applied desc limit 1;
+delete from django_migrations order by applied desc limit 1;
+delete from django_migrations where name='0315_auto_20151006_1830';
+\q
+delete from django_migrations where name='0319_auto_20151006_1830';
+\q
+update publisher set button_style_id=null where button_style_id=8;
+select * from button_style;
+delete from button_style where id in (8, 11, 12);
+\q
+select * from ingredient_category limit 1;
+select * from ingredient_category limit 10;
+select * from ingredient_category where parent_id is not null limit 1;
+select * from ingredient_category where parent_id is not null limit 10;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+      SELECT
+        id, name, parent_id, 0 AS height
+      FROM
+        ingredient_category
+      WHERE
+        id = 243
+      UNION
+      SELECT
+        ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+      FROM
+        ingredient_category ic INNER JOIN category_tree ct
+        ON ct.parent_id = ic.id
+    )
+    SELECT
+      name AS category_name
+    FROM
+      category_tree ct
+    WHERE
+      parent_id is null
+;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+      SELECT
+        id, name, parent_id, 0 AS height
+      FROM
+        ingredient_category
+      WHERE
+        id = 243
+      UNION
+      SELECT
+        ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+      FROM
+        ingredient_category ic INNER JOIN category_tree ct
+        ON ct.parent_id = ic.id
+    )
+    SELECT
+      name AS category_name
+    FROM
+      category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    id AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    name AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    count(name) AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    count(distinct name) AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    count(distinct id) AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    count(id) AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    id AS category_id
+  FROM
+    category_tree;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    ct.id AS category_id
+  FROM
+    ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    ct.id AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    ct.id AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    ct.id AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    ct.id AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    ct.id AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    ct.id AS category_id
+  FROM
+    category_tree ct;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    ct.name AS category, r.source_uri AS url
+  FROM
+    category_tree ct;
+  INNER JOIN ingredient ing ON ing.category_id = ct.id
+  INNER JOIN recipe_ingredient ri on ri.ingredient_id = ing.id
+  INNER JOIN recipe r on r.id = ri.recipe_id;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER JOIN category_tree ct ON ct.id = ic.parent_id
+)
+  SELECT
+    ct.name AS category, r.source_uri AS url
+  FROM
+    category_tree ct
+  INNER JOIN ingredient ing ON ing.category_id = ct.id
+  INNER JOIN recipe_ingredient ri on ri.ingredient_id = ing.id
+  INNER JOIN recipe r on r.id = ri.recipe_id;
+WITH RECURSIVE category_tree(id, name, parent_id, height) AS (
+  SELECT
+    id, name, parent_id, 0 AS height
+  FROM
+    ingredient_category
+  WHERE
+    name IN ('Cottage Cheese', 'Cream Cheese', 'Sour Cream', 'Yogurt', 'Packaged Cheese', 'Milk & Cream', 'Beef', 'Chicken', 'Seafood', 'More Fresh Herbs', 'Fresh Herbs', 'Canned & Dried Tomatoes', 'Herb Blends', 'Herbs, Spices & Seasonings', 'Cooking Oils & Sprays', 'Crackers', 'Produce', 'Meat & Seafood', 'Deli', 'Dairy', 'Beverages', 'Bakery', 'Frozen', 'Grains, Pasta, & Beans', 'Condiments & Sauces', 'Soups & Canned Goods', 'Snacks', 'Breakfast & Cereal', 'Alcoholic Beverages')
+  UNION
+  SELECT
+    ic.id, ic.name, ic.parent_id, ct.height + 1 AS height
+  FROM
+    ingredient_category ic 
+  INNER
+select distinct name from event_raw;
+\q
+select * from django_migrations order by applied desc;
+delete from django_migrations where id=369;
+drop table device_raw
+;
+\dt
+\q
+\d dashboard_view
+select * dashboard_view
+;
+select * from dashboard_view;
+q
+\q
+drop table dashboard_view ;
+select * from django_migrations order by applied desc;
+select from django_migrations where id in (371, 370);
+\q
+select * from django_migrations order by applied desc limit 10;
+delete from django_migrations where id = 371;
+delete from django_migrations where id = 370;
+\q
+\d dashboard_view;
+\q
+select * from dashboard_view;
+\q
+select * from dashboard_view;
+truncate table dashboard_view ;
+select * from dashboard_view;
+\q
+select * from dashboard_view;
+\q
+select * from dashboard_view;
+TRUNCATE dashboard_view ;
+\q
+select * from dashboard_view limit 10;
+\q
+\q
+\d dashboard_view;
+select distinct event_name from dashboard_view;
+\q
+select count(*) from event_raw join recipe on recipe.id = event_raw.recipe_id where event_raw.name='click_button';
+select count(*) from event_raw join recipe on recipe.id = event_raw.recipe_id where event_raw.name='click_button' and recipe.publisher_id=680;
+select count(*) from event_raw join recipe on recipe.id = event_raw.recipe_id where event_raw.name='view_button' and recipe.publisher_id=680;
+\q
+select external_ids from device_raw where length(external_ids < 10);
+select external_ids from device_raw where length(external_ids) < 10;
+select external_ids from device_raw where length(external_ids) < 10 and external_ids <> '{}';
+delete external_ids from device_raw where length(external_ids) < 10 and external_ids <> '{}';
+update device_raw set external_ids='' where length(external_ids) < 10 and external_ids <> '{}';
+\q
+select * dashboard_view limit 10;
+\q
+select count(*) from partner_publishers;
+\q
+select count(*) from partner_publishers;
+\q
+\d publisher_tag
+\d publisher_tags;
+select * from publisher_tag limit 10;
+select * from publisher_tags limit 10;
+select * from tag_category limit 10;
+\q
+\dt
+SELECT id FROM partner WHERE id not in (SELECT partner_id FROM partner_publishers);
+SELECT COUNT(id) FROM partner WHERE id not in (SELECT partner_id FROM partner_publishers);
+SELECT COUNT(id) FROM partner WHERE id NOT in (SELECT partner_id FROM partner_publishers);
+SELECT COUNT(id) FROM partner WHERE id IN (SELECT partner_id FROM partner_publishers);
+\q
+SELECT count(id) FROM partner WHERE id NOT IN (SELECT partner_id FROM partner_publishers);
+SELECT count(id) FROM partner WHERE id IN (SELECT partner_id FROM partner_publishers);
+\q
+\d publisher_tag
+select count(*) from publisher_tag;
+select * from publisher_tag;
+\q
+UNLOAD ('
+SELECT
+    publisher_id,
+    date,
+    event_name,
+    COUNT(*) AS event_count
+  FROM (
+    SELECT
+      publisher_id, 
+      uuid, 
+      funnel_id, 
+      date,
+      event_name,
+      COUNT(*)
+    FROM (
+      SELECT 
+        recipe.publisher_id AS publisher_id, 
+        event_raw.uuid AS uuid,
+        event_raw.funnel_id AS funnel_id,
+        trunc(TIMESTAMP \'epoch\' + (event_raw.server_timestamp / 1000) * INTERVAL \'1 Second \') AS date,
+        event_raw.name AS event_name
+      FROM 
+        event_raw
+      JOIN 
+        recipe ON event_raw.recipe_id=recipe.id
+      WHERE
+        event_raw.name=\'click_button\' OR event_raw.name=\'view_button\'
+      ) 
+    GROUP BY
+      publisher_id, date, event_name, uuid, funnel_id
+  )
+  GROUP BY
+    publisher_id, date, event_name
+') 
+To 'chicory-redshift/dashboard_view/data.csv'
+WITH CREDENTIALS AS 'aws_access_key_id=AKIAIPA6DSOTO2NJY24Q;aws_secret_access_key=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'
+DELIMITER AS ',' parallel off ALLOWOVERWRITE;
+UNLOAD ('
+SELECT
+    publisher_id,
+    date,
+    event_name,
+    COUNT(*) AS event_count
+  FROM (
+    SELECT
+      publisher_id, 
+      uuid, 
+      funnel_id, 
+      date,
+      event_name,
+      COUNT(*)
+    FROM (
+      SELECT 
+        recipe.publisher_id AS publisher_id, 
+        event_raw.uuid AS uuid,
+        event_raw.funnel_id AS funnel_id,
+        trunc(TIMESTAMP \'epoch\' + (event_raw.server_timestamp / 1000) * INTERVAL \'1 Second \') AS date,
+        event_raw.name AS event_name
+      FROM 
+        event_raw
+      JOIN 
+        recipe ON event_raw.recipe_id=recipe.id
+      WHERE
+        event_raw.name=\'click_button\' OR event_raw.name=\'view_button\'
+      ) 
+    GROUP BY
+      publisher_id, date, event_name, uuid, funnel_id
+  )
+  GROUP BY
+    publisher_id, date, event_name
+') 
+To 's3://chicory-redshift/dashboard_view/data.csv'
+WITH CREDENTIALS AS 'aws_access_key_id=AKIAIPA6DSOTO2NJY24Q;aws_secret_access_key=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'
+DELIMITER AS ',' parallel off ALLOWOVERWRITE;
+\q
+\d dashboard_view
+select count(*) from dashboard_view where publisher_id=53;
+select count(*) from dashboard_view;
+select publisher_id, sum(event_count) from dashboard_view group by publisher_id limit 10;
+select publisher_id, sum(event_count) as views from dashboard_view group by publisher_id order by views desc limit 10;
+\q
+\d publisher
+alter table publisher drop column exclude_from_campaigns;
+\q
+update event_raw set external_ids = '{}' where external_ids = '"{}"';
+update device_raw set external_ids = '{}' where external_ids = '"{}"';
+\q
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1;
+SELECT id FROM (
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories;
+delete from ingredient_category where id in (SELECT id FROM ()
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories;
+delete from ingredient_category where id in (SELECT id FROM (
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories) ids;
+delete from ingredient_category where id in (SELECT id FROM (
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories);
+select * from ingredient_category_conversion limit 10;
+select count(*) from ingredient_category_conversion where category_id in SELECT id FROM (
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories;
+select count(*) from ingredient_category_conversion where category_id in SELECT id FROM (
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories);
+select count(*) from ingredient_category_conversion where category id in (SELECT id FROM (
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories);
+select count(*) from ingredient_category_conversion where category_id in (SELECT id FROM (
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories);
+delete from ingredient_category_conversion where category_id in (SELECT id FROM (
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories);
+delete from ingredient_category where id in (SELECT id FROM (
+SELECT ingredient_category.id AS id, COUNT(ingredient.id) AS linked_ingredients
+FROM ingredient_category
+LEFT JOIN ingredient ON ingredient_category.id = ingredient.category_id
+WHERE ingredient_category.id NOT IN (SELECT DISTINCT parent_id FROM ingredient_category WHERE parent_id IS NOT NULL)
+GROUP BY ingredient_category.id
+HAVING COUNT(ingredient.id) < 1
+) orphan_categories);
+SELECT ingredient_category.name AS name, COUNT(ingredient_category.id) AS ingredient_categories
+    FROM ingredient_category
+    GROUP BY ingredient_category.name
+    HAVING COUNT(ingredient_category.id) > 1;
+exit
+\q
+SELECT ingredient_category.name AS name, COUNT(ingredient_category.id) AS ingredient_categories
+    FROM ingredient_category
+    GROUP BY ingredient_category.name
+    HAVING COUNT(ingredient_category.id) > 1;
+\Q
+\Q
+\q
+\dt
+update device_raw set external_ids = '{}' where external_ids = '"{}"';
+\q
+truncate ingredient_category;
+\copy ingedient_category FROM '/User/garebear/desktop/ingredient_category.csv'
+\copy ingedient_category FROM '/Users/garebear/desktop/ingredient_category.csv'
+\copy ingredient_category FROM '/Users/garebear/desktop/ingredient_category.csv'
+\copy ingredient_category FROM '/Users/garebear/desktop/ingredient_category.csv' WITH CSV
+\q
+\copy ingredient_category FROM '/Users/garebear/desktop/ingredient_category.csv' WITH CSV
+\q
+\dt
+select * from ingredient_category_conversion limit 10;
+\q
+\q
+\d recipe_id
+\d recipe
+\d recipe_ingredient
+\d ingredient
+\q
+select id from publisher where name = 'Food & Wine';
+SELECT ingredient.name, COUNT(*) AS views
+FROM event_raw
+JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+JOIN recipe ON ingredient.recipe_id = recipe.id
+WHERE recipe.publisher_id = 448
+GROUP BY ingredient.name
+ORDER BY views
+LIMIT 100;
+SELECT ingredient.name, COUNT(*) AS views
+FROM event_raw
+JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+JOIN recipe ON ingredient.recipe_id = recipe.id
+WHERE recipe.publisher_id = 448
+GROUP BY ingredient.name
+ORDER BY views DESC
+LIMIT 100;
+\d event_raw
+SELECT ingredient.name, COUNT(event_raw.id) AS views
+FROM event_raw
+LEFT OUTER JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+LEFT OUTER JOIN recipe ON ingredient.recipe_id = recipe.id
+WHERE recipe.publisher_id = 448
+GROUP BY ingredient.name
+ORDER BY views DESC
+LIMIT 100;
+SELECT ingredient.name, COUNT(event_raw.id) AS views
+FROM event_raw
+LEFT OUTER JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+LEFT OUTER JOIN recipe ON ingredient.recipe_id = recipe.id
+WHERE recipe.publisher_id = 448
+LIMIT 100;
+SELECT *
+FROM event_raw
+LEFT OUTER JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+LEFT OUTER JOIN recipe ON ingredient.recipe_id = recipe.id
+WHERE recipe.publisher_id = 448
+LIMIT 100;
+select distinct name from event_raw;
+SELECT ingredient.name, recipe.name, event_raw.id
+FROM event_raw
+LEFT OUTER JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+LEFT OUTER JOIN recipe ON ingredient.recipe_id = recipe.id
+WHERE recipe.publisher_id = 448
+AND event_raw.name = 'load_button'
+LIMIT 100;
+select count(recipe.id) from recipe where publisher_id=448;
+select * from publisher where id=448;
+select * from publisher where name='Food & Wine';
+select * from publisher where id=488;
+select count(recipe.id) from recipe where publisher_id=488;
+SELECT ingredient.name, COUNT(event_raw.id) AS views
+FROM event_raw
+LEFT OUTER JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+LEFT OUTER JOIN recipe ON ingredient.recipe_id = recipe.id
+WHERE recipe.publisher_id = 488
+AND event_raw.name = 'load_button'
+GROUP BY ingredient.name
+ORDER BY views DESC
+LIMIT 100;
+UNLOAD ('
+  SELECT ingredient.name, COUNT(event_raw.id) AS views
+  FROM event_raw
+  LEFT OUTER JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+  LEFT OUTER JOIN recipe ON ingredient.recipe_id = recipe.id
+  WHERE recipe.publisher_id = 488
+  AND event_raw.name = \'load_button\'
+  GROUP BY ingredient.name
+  ORDER BY views DESC
+  LIMIT 100
+') TO 'chicory-trends/top_ingredients_for_food_and_wine.csv' 
+WITH CREDENTIALS AS 'aws_access_key_id=AKIAIZXZB57GA2T7PZFA;aws_secret_access_key=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'
+DELIMITER AS '|' parallel off ALLOWOVERWRITE;
+UNLOAD ('
+  SELECT ingredient.name, COUNT(event_raw.id) AS views
+  FROM event_raw
+  LEFT OUTER JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+  LEFT OUTER JOIN recipe ON ingredient.recipe_id = recipe.id
+  WHERE recipe.publisher_id = 488
+  AND event_raw.name = \'load_button\'
+  GROUP BY ingredient.name
+  ORDER BY views DESC
+  LIMIT 100
+') TO 's3://chicory-trends/top_ingredients_for_food_and_wine.csv' 
+WITH CREDENTIALS AS 'aws_access_key_id=AKIAIZXZB57GA2T7PZFA;aws_secret_access_key=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'
+DELIMITER AS '|' parallel off ALLOWOVERWRITE;
+UNLOAD ('
+  SELECT ingredient.name, COUNT(event_raw.id) AS views
+  FROM event_raw
+  LEFT OUTER JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id
+  LEFT OUTER JOIN recipe ON ingredient.recipe_id = recipe.id
+  WHERE recipe.publisher_id = 488
+  AND event_raw.name = \'load_button\'
+  GROUP BY ingredient.name
+  ORDER BY views DESC
+') TO 's3://chicory-trends/top_ingredients_for_food_and_wine.csv' 
+WITH CREDENTIALS AS 'aws_access_key_id=AKIAIZXZB57GA2T7PZFA;aws_secret_access_key=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'
+DELIMITER AS '|' parallel off ALLOWOVERWRITE;
+\q
+\dt
+\d django_migrations
+select * from django_migrations order by applied desc limit 10;
+\q
+\dt
+alter table chicory_setting rename to app_setting;
+\q
+\dt
+\q
+select id from recipe limit 1;
+select id, name from recipe limit 1;
+SELECT recipe_ingredient.ingredient_id
+FROM recipe 
+JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipe.id
+WHERE recipe.id = 13503;
+select id from ingredient limit 10;
+select (20597, 20633, 4118, 5145, 19102, 12764, 2209, 11955, 5100, 18586, 17647, 21377, 17515, 21516, 5760, 15568, 17958, 17959, 2545, 16848);
+select * from (20597, 20633, 4118, 5145, 19102, 12764, 2209, 11955, 5100, 18586, 17647, 21377, 17515, 21516, 5760, 15568, 17958, 17959, 2545, 16848);
+select id from ingredient where id in (20597, 20633, 4118, 5145, 19102, 12764, 2209, 11955, 5100, 18586, 17647, 21377, 17515, 21516, 5760, 15568, 17958, 17959, 2545, 16848);
+SELECT * FROM
+(SELECT id AS id
+FROM ingredient
+WHERE id in (20597, 20633, 4118, 5145, 19102, 12764, 2209, 11955, 5100, 18586, 17647, 21377, 17515, 21516, 5760, 15568, 17958, 17959, 2545, 16848)) all_ingredients
+JOIN
+(SELECT recipe_ingredient.ingredient_id AS ingredient_id
+FROM recipe 
+JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipe.id
+WHERE recipe.id = 13503) recipe_data
+ON all_ingredients.id=ingredient_id;
+SELECT * FROM
+(SELECT id AS id
+FROM ingredient
+WHERE id in (20597, 20633, 4118, 5145, 19102, 12764, 2209, 11955, 5100, 18586, 17647, 21377, 17515, 21516, 5760, 15568, 17958, 17959, 2545, 16848)) all_ingredients
+LEFT OUTER JOIN
+(SELECT recipe_ingredient.ingredient_id AS ingredient_id
+FROM recipe 
+JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipe.id
+WHERE recipe.id = 13503) recipe_data
+ON all_ingredients.id=ingredient_id;
+SELECT CASE WHEN ingredient_id IS NULL THEN 0 
+                          WHEN ingredient_id IS NOT NULL THEN 0 
+FROM
+(SELECT id AS id
+FROM ingredient
+WHERE id in (20597, 20633, 4118, 5145, 19102, 12764, 2209, 11955, 5100, 18586, 17647, 21377, 17515, 21516, 5760, 15568, 17958, 17959, 2545, 16848)) all_ingredients
+LEFT OUTER JOIN
+(SELECT recipe_ingredient.ingredient_id AS ingredient_id
+FROM recipe 
+JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipe.id
+WHERE recipe.id = 13503) recipe_data
+ON all_ingredients.id=ingredient_id;
+SELECT CASE WHEN ingredient_id IS NULL THEN 0 ELSE 1 END
+FROM
+(SELECT id AS id
+FROM ingredient
+WHERE id in (20597, 20633, 4118, 5145, 19102, 12764, 2209, 11955, 5100, 18586, 17647, 21377, 17515, 21516, 5760, 15568, 17958, 17959, 2545, 16848)) all_ingredients
+LEFT OUTER JOIN
+(SELECT recipe_ingredient.ingredient_id AS ingredient_id
+FROM recipe 
+JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipe.id
+WHERE recipe.id = 13503) recipe_data
+ON all_ingredients.id=ingredient_id;
+SELECT CASE WHEN ingredient_id IS NULL THEN 0 ELSE 1 END
+FROM
+(SELECT id AS id
+FROM ingredient) all_ingredients
+LEFT OUTER JOIN
+(SELECT recipe_ingredient.ingredient_id AS ingredient_id
+FROM recipe 
+JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipe.id
+WHERE recipe.id = 13503) recipe_data
+ON all_ingredients.id=ingredient_id;
+SELECT CASE WHEN ingredient_id IS NULL THEN 0 ELSE 1 END
+FROM
+(SELECT id AS id
+FROM ingredient
+ORDER BY id) all_ingredients
+LEFT OUTER JOIN
+(SELECT recipe_ingredient.ingredient_id AS ingredient_id
+FROM recipe 
+JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipe.id
+WHERE recipe.id = 13503) recipe_data
+ON all_ingredients.id=ingredient_id;
+select id from ingredient where id=10724 UNION select id from publisher where id=375;
+SELECT CASE WHEN ingredient_id IS NULL THEN 0 ELSE 1 END
+FROM
+(SELECT id AS id
+FROM ingredient
+ORDER BY id) all_ingredients
+LEFT OUTER JOIN
+(SELECT recipe_ingredient.ingredient_id AS ingredient_id
+FROM recipe 
+JOIN recipe_ingredient ON recipe_ingredient.recipe_id = recipe.id
+WHERE recipe.id = 13503) recipe_data
+ON all_ingredients.id=ingredient_id
+;
+\q
+\dt
+\q
+\d publisher_todo
+\q
+\dt
+\q
+\dt
+\q
+\dt partner
+\d partner
+alter table partner drop constraint partner_source_id_key
+;
+\q
+\dt
+\q
+\dt
+\q
+\d django_migrations
+select * from django_migrations limit 1;
+select count(*) from django_migrations;
+\q
+\d ingredient;
+select name from ingredient limit 1;
+select * 
+from ingredient_name 
+where name like '%ginger%ale%' 
+and name not like '%syrup%';
+select * 
+from ingredient 
+where name like '%ginger%ale%' 
+and name not like '%syrup%';
+SELECT count(distinct event_raw.id)
+FROM event_raw
+JOIN recipe ON event_raw.recipe_id = recipe.id
+JOIN ingredient ON recipe.id = ingredient.recipe_id
+JOIN publisher ON recipe.publisher_id = publisher.id
+WHERE event_raw.name='view_button' 
+AND publisher.name = 'MyRecipes.com'
+AND ingredient.ingredient_id IN (6630, 9926, 2212, 14340, 17310, 23209, 24063, 25470, 27284, 28290)
+AND event_raw.server_timestamp >= (select CAST(extract(epoch from getdate() - interval '30 days') AS numeric) * 1000) 
+AND event_raw.server_timestamp <= (select CAST(extract(epoch from getdate()) AS numeric) * 1000);
+SELECT count(distinct event_raw.id)
+FROM event_raw
+JOIN recipe ON event_raw.recipe_id = recipe.id
+JOIN ingredient ON recipe.id = ingredient.recipe_id
+JOIN publisher ON recipe.publisher_id = publisher.id
+WHERE event_raw.name='view_button' 
+AND publisher.name = 'MyRecipes.com'
+AND event_raw.server_timestamp >= (select CAST(extract(epoch from getdate() - interval '30 days') AS numeric) * 1000) 
+AND event_raw.server_timestamp <= (select CAST(extract(epoch from getdate()) AS numeric) * 1000);
+select distinct                                                                                                                                                                                                                                          from ingredient                                                                                                                                                                                                                                               where name like '%ginger%ale%'                                                                                                                                                                                                                                and name not like '%syrup%';
+select distinct *                                                                                                                                                                                                                                          from ingredient                                                                                                                                                                                                                                               where name like '%ginger%ale%'                                                                                                                                                                                                                                and name not like '%syrup%';
+select distinct name                                                                                                                                                                                                                                          from ingredient                                                                                                                                                                                                                                               where name like '%ginger%ale%'                                                                                                                                                                                                                                and name not like '%syrup%';
+SELECT count(distinct recipe.id)
+FROM event_raw
+JOIN recipe ON event_raw.recipe_id = recipe.id
+JOIN ingredient ON recipe.id = ingredient.recipe_id
+JOIN publisher ON recipe.publisher_id = publisher.id
+WHERE event_raw.name='view_button' 
+AND publisher.name = 'MyRecipes.com'
+AND event_raw.server_timestamp >= (select CAST(extract(epoch from getdate() - interval '30 days') AS numeric) * 1000) 
+AND event_raw.server_timestamp <= (select CAST(extract(epoch from getdate()) AS numeric) * 1000);
+SELECT count(distinct recipe.id)
+FROM recipe 
+JOIN ingredient ON recipe.id = ingredient.recipe_id
+JOIN publisher ON recipe.publisher_id = publisher.id
+WHERE publisher.name = 'MyRecipes.com'
+AND event_raw.server_timestamp >= (select CAST(extract(epoch from getdate() - interval '30 days') AS numeric) * 1000) 
+AND event_raw.server_timestamp <= (select CAST(extract(epoch from getdate()) AS numeric) * 1000)
+AND ingredient.ingredient_id IN (6630, 9926, 2212, 14340, 17310, 23209, 24063, 25470, 27284, 28290);
+SELECT count(distinct recipe.id)
+FROM event_raw
+JOIN recipe ON event_raw.recipe_id = recipe.id
+JOIN ingredient ON recipe.id = ingredient.recipe_id
+JOIN publisher ON recipe.publisher_id = publisher.id
+WHERE event_raw.name='view_button' 
+AND publisher.name = 'MyRecipes.com'
+AND ingredient.ingredient_id IN (6630, 9926, 2212, 14340, 17310, 23209, 24063, 25470, 27284, 28290)
+AND event_raw.server_timestamp >= (select CAST(extract(epoch from getdate() - interval '30 days') AS numeric) * 1000) 
+AND event_raw.server_timestamp <= (select CAST(extract(epoch from getdate()) AS numeric) * 1000);
+\q
+\dt
+\d dashboard_view
+select * from dashboard_view limit 1;
+select id from publisher where name='myrecipes.com';
+select count(*) from dashboard_view where publisher_id = 38 ;
+select * from dashboard_view where publisher_id = 38 limit 20;
+select * from dashboard_view where publisher_id = 38 order by date limit 20;
+select * from dashboard_view where publisher_id = 38 order by date desc limit 20;
+\q
+\dt
+\q
+\dt
+drop table ad_campaign_publishers;
+\q
+select id from event_raw limit 1;
+\d event_raw
+UNLOAD ('
+        SELECT ingredient.category AS category, count(distinct event_raw.id)
+        FROM event_raw 
+        INNER JOIN ingredient ON event_raw.recipe_id = ingredient.recipe_id 
+        WHERE event_raw.server_timestamp >= (select CAST(extract(epoch from getdate() - interval \'30 days\') AS numeric) * 1000) 
+        AND event_raw.server_timestamp <= (select CAST(extract(epoch from getdate()) AS numeric) * 1000) 
+        AND event_raw.name=\'view_button\'
+        GROUP BY ingredient.category
+        ') To 's3://chicory-trends/category-views.csv' WITH CREDENTIALS AS 'aws_access_key_id=AKIAIZXZB57GA2T7PZFA;aws_secret_access_key=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' DELIMIT
+create database chicory_backup
+;
+create database chicory_backup2;
+\q
+SELECT COUNT(distinct event_raw.id) AS clicks
+  FROM event_raw
+  WHERE event_raw.name = 'click button'
+  AND event_raw.server_timestamp >= (select CAST(extract(epoch from getdate() - interval '30 days') AS numeric) * 1000) 
+  AND event_raw.server_timestamp <= (select CAST(extract(epoch from getdate()) AS numeric) * 1000);
+SELECT COUNT(distinct event_raw.id) AS clicks
+  FROM event_raw
+  WHERE event_raw.name = 'click_button'
+  AND event_raw.server_timestamp >= (select CAST(extract(epoch from getdate() - interval '90 days') AS numeric) * 1000) 
+  AND event_raw.server_timestamp <= (select CAST(extract(epoch from getdate()) AS numeric) * 1000);
+SELECT COUNT(distinct event_raw.id) AS clicks
+  FROM event_raw
+  WHERE event_raw.name = 'click_button'
+  AND event_raw.server_timestamp >= (select CAST(extract(epoch from getdate() - interval '30 days') AS numeric) * 1000) 
+  AND event_raw.server_timestamp <= (select CAST(extract(epoch from getdate()) AS numeric) * 1000);
+\q
+select * from ad_style;
+\q
+SELECT recipe_id, count(*)
+FROM recipe_ingredient
+GROUP BY recipe_id
+limit 10;
+SELECT AVG(ingredients) FROM (
+  SELECT recipe_id, count(*) AS ingredients
+  FROM recipe_ingredient
+  GROUP BY recipe_id
+);
+SELECT AVG(ingredients) FROM (
+  SELECT recipe_id, count(*) AS ingredients
+  FROM recipe_ingredient
+  GROUP BY recipe_id
+) ingredient_counts;
+SELECT recipe_id 
+FROM (
+  SELECT recipe_id, count(*) AS ingredients
+  FROM recipe_ingredient
+  GROUP BY recipe_id
+) ingredient_counts
+WHERE ingredient_counts.ingredients=10
+LIMIT 20;
+select name from recipe where id = 7161;
+select name from recipe where id = 7168;
+\q
+\dt event_raw
+\d event_raw
+\d device_raw
+select * from event_raw where id='9c1b9390-9eb4-4b19-b83d-b2dc0f84b922';
+select cast('20160223 22:14:55.627' as timestamp);
+select count(*) from event where server_timestamp_v2 is not null;
+select count(*) from event_raw where server_timestamp_v2 is not null;
+select * from event_raw limit 1;
+select * from event_raw limit 2;
+select id from event_raw limit 2;
+UPDATE event_raw
+SET client_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.client_timestamp / 1000) * INTERVAL '1 Second'),
+        server_timstamp_v2=(TIMESTAMP 'epoch' + (event_raw.server_timestamp / 1000) * INTERVAL '1 Second')
+WHERE event_raw.client_timestamp_v2 IS NULL
+AND event_raw.server_timestamp_v2 IS NULL
+AND id IN (5523534, 5523548);
+UPDATE event_raw
+SET client_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.client_timestamp / 1000) * INTERVAL '1 Second'),
+        server_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.server_timestamp / 1000) * INTERVAL '1 Second')
+WHERE event_raw.client_timestamp_v2 IS NULL
+AND event_raw.server_timestamp_v2 IS NULL
+AND id IN (5523534, 5523548);
+select * from event_raw where id IN (5523534, 5523548);
+select id from event_raw limit 10;
+select server_timestamp from event_raw where id in (1229819, 1239279, 1230729, 1068460, 1084122, 1068461, 1084264, 1084263, 1068550, 2232693);
+UPDATE event_raw
+SET client_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.client_timestamp / 1000) * INTERVAL '1 Second'),
+        server_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.server_timestamp / 1000) * INTERVAL '1 Second')
+WHERE event_raw.client_timestamp_v2 IS NULL
+AND event_raw.server_timestamp_v2 IS NULL
+AND id IN (1229819, 1239279, 1230729, 1068460, 1084122, 1068461, 1084264, 1084263, 1068550, 2232693);
+select * from event_raw where id in (1229819, 1239279, 1230729, 1068460, 1084122, 1068461, 1084264, 1084263, 1068550, 2232693);
+
+UPDATE event_raw
+SET client_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.client_timestamp / 1000) * INTERVAL '1 Second'),
+        server_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.server_timestamp / 1000) * INTERVAL '1 Second')
+WHERE event_raw.client_timestamp_v2 IS NULL
+AND event_raw.server_timestamp_v2 IS NULL;
+
+UPDATE event_raw
+SET client_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.client_timestamp / 1000) * INTERVAL '1 Second'),
+        server_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.server_timestamp / 1000) * INTERVAL '1 Second')
+WHERE event_raw.client_timestamp_v2 IS NULL
+AND event_raw.server_timestamp_v2 IS NULL;
+\dt
+UPDATE event_raw
+SET client_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.client_timestamp / 1000) * INTERVAL '1 Second'),
+        server_timestamp_v2=(TIMESTAMP 'epoch' + (event_raw.server_timestamp / 1000) * INTERVAL '1 Second')
+WHERE event_raw.client_timestamp_v2 IS NULL
+AND event_raw.server_timestamp_v2 IS NULL;
+\q
+\q
+select * from publisher where is_blogger = f;
+select * from publisher where is_blogger = 'f';
+\q
+select * from recipe where id=2682659;
+select count(*) from recipe_ingredient where recipe_id=2682659;
+select c* from recipe_ingredient where recipe_id=2682659;
+select * from recipe_ingredient where recipe_id=2682659;
+\q
+select count(*) from publisher where name like 'Vlady+%';
+select count(*) from publisher where name like '%Vlady+%';
+\q
+select * from publisher_onboarding where publisher_id = (select id from publisher where name='z');
+select * from publisher where id=1099;
+\q
+select * from publisher where id=1099;
+select * from publisher where id=1100;
+update publisher set has_installed = 'f' where id=1100;
+select * from publisher where id=1100;
+update publisher set has_installed = 'f' where id=1100;
+update publisher set has_installed = 'f' where id=1100;
+select * from publisher where id=1100;
+select * from publisher where id=1101;
+select * from publisher where id=1101;
+\q
+select p.id, p.name, to_json(array_agg(distinct hostname)) as hostnames, to_json(array_agg(distinct t.name)) as tags from publisher p left join publisher_hostname ph on p.id = ph.publisher_id left join publisher_tags pt on p.id = pt.publisher_id left join publisher_tag t on pt.publishertag_id = t.id group by p.id, p.name order by p.id;
+\d
+\q
+\d publisher
+alter table publisher drop column state;
+\d publisher
+\q
+select distinct name from event_raw;
+\dt
+UNLOAD ('
+SELECT distinct json_extract_path_text(device_raw.external_ids, \'appnexus\')
+FROM device_raw
+JOIN event_raw ON device_raw.uuid = event_raw.uuid
+WHERE event_raw.name = \'click_button\'
+AND event_raw.server_timestamp_v2 >= getdate() - interval \'2 weeks\'
+AND event_raw.server_timestamp_v2 <= getdate()
+')
+TO 's3://chicory-trends/clickers.csv '
+WITH CREDENTIALS AS 'aws_access_key_id=AKIAIZXZB57GA2T7PZFA;aws_secret_access_key=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'
+DELIMITER AS '|' parallel off ALLOWOVERWRITE;
+select count(*) from device_raw;
+select count(*) from device_raw;
+select count(*) from device_raw;
+delete * from device_raw;
+delete from device_raw;
+COPY device_raw
+FROM 's3://chicory-redshift/device'
+EMPTYASNULL
+IGNOREBLANKLINES
+DELIMITER '|'
+TIMEFORMAT AS 'YYYYMMDD HH:MI:SS'
+With Credentials AS 'aws_access_key_id=AKIAIZXZB57GA2T7PZFA;aws_secret_access_key=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';
+COPY device_raw
+FROM 's3://chicory-redshift/device'
+EMPTYASNULL
+IGNOREBLANKLINES
+DELIMITER '|'
+TIMEFORMAT AS 'YYYYMMDD HH:MI:SS'
+Credentials 'aws_access_key_id=AKIAIZXZB57GA2T7PZFA;aws_secret_access_key=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';
+\d stl_load_errors
+select * from stl_load_errors order by starttime desc limit 1;
+COPY device_raw
+FROM 's3://chicory-redshift/device'
+EMPTYASNULL
+IGNOREBLANKLINES
+DELIMITER '|'
+TIMEFORMAT AS 'YYYYMMDD HH:MI:SS'
+Credentials 'aws_access_key_id=AKIAIZXZB57GA2T7PZFA;aws_secret_access_key=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';
+UNLOAD ('
+SELECT distinct json_extract_path_text(device_raw.external_ids, \'appnexus\')
+FROM device_raw
+JOIN event_raw ON device_raw.uuid = event_raw.uuid
+WHERE event_raw.name = \'click_button\'
+AND event_raw.server_timestamp_v2 >= getdate() - interval \'2 weeks\'
+AND event_raw.server_timestamp_v2 <= getdate()
+')
+TO 's3://chicory-trends/clickers.csv '
+WITH CREDENTIALS AS 'aws_access_key_id=AKIAIZXZB57GA2T7PZFA;aws_secret_access_key=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'
+DELIMITER AS '|' parallel off ALLOWOVERWRITE;
+\q
+select * from stl_load_errors;
+select * from stl_load_errors order by start_time desc limit 1;
+\d stl_load_errors
+select * from stl_load_errors order by starttime desc limit 1;
+\q
+\l
+delete database chicory
+;
+drop database chicory
+;
+\l
+select count(*) from publisher;
+\connect chicory_backup
+select count(*) from publisher
+;
+drop database chicory_backup;
+\c postgres
+drop database chicory_backup;
+\q
+select * from publisher limit 1;
+select id from publisher where name='Cooking Light Diet';
+update publisher set logo='static/pages_v3/img/blogger-logos/Screen_Shot_2016-01-28_at_4.14.58_PM.png' where id=1;
+select * from publisher where id=1;
+\q
+create database wovenne;
+\q
+\dt
+\q
+\dt
+\q
+\dt
+\d event_raw;
+select * from event_raw where name='campaign_view' limit 10;
+select * from event_raw where name='view_campaign' limit 10;
+select json_extract_path_text(event_raw.properties, 'ad_campaign_id') from event_raw where name='view_campaign' limit 10;
+\d dashboard 
+select * from dashboard limit 5;
+select * from dashboard where event_name='view_campaign' limit 5;
+SELECT
+    publisher_id,
+    date,
+    event_name,
+    COUNT(*) AS event_count,
+    ad_campaign_id,
+  FROM (
+    SELECT
+      recipe.publisher_id AS publisher_id,
+      event_raw.uuid AS uuid,
+      event_raw.funnel_id AS funnel_id,
+      trunc(TIMESTAMP 'epoch' + (event_raw.server_timestamp / 1000) * INTERVAL '1 Second ') AS date,
+      event_raw.name AS event_name,
+      json_extract_path_text(event_raw.properties, 'ad_campaign_id') as ad_campaign_id
+    FROM
+      event_raw
+    JOIN
+      recipe ON event_raw.recipe_id=recipe.id
+    WHERE
+      event_raw.name IN ('click_button', 'view_button', 'view_campaign', 'click_campaign')
+  )
+  GROUP BY
+    publisher_id, date, event_name, ad_campaign_id
+);
+SELECT
+    publisher_id,
+    date,
+    event_name,
+    COUNT(*) AS event_count,
+    ad_campaign_id
+  FROM (
+    SELECT
+      recipe.publisher_id AS publisher_id,
+      event_raw.uuid AS uuid,
+      event_raw.funnel_id AS funnel_id,
+      trunc(TIMESTAMP 'epoch' + (event_raw.server_timestamp / 1000) * INTERVAL '1 Second ') AS date,
+      event_raw.name AS event_name,
+      json_extract_path_text(event_raw.properties, 'ad_campaign_id') as ad_campaign_id
+    FROM
+      event_raw
+    JOIN
+      recipe ON event_raw.recipe_id=recipe.id
+    WHERE
+      event_raw.name IN ('click_button', 'view_button', 'view_campaign', 'click_campaign')
+  )
+  GROUP BY
+    publisher_id, date, event_name, ad_campaign_id;
+\q
+\d dashboard_viewl
+\d dashboard_view
+select id, name from ad_campaign;
+UPDATE dashboard_view
+SET ad_campaign_id = 3
+WHERE date >= '2016-12-15';
+select count(*) from dashboard_view where date >= '2016-12-15';
+select count(*) from dashboard_view where date <= '2016-12-15';
+select count(*) from dashboard_view where date >= '2015-12-15';
+UPDATE dashboard_view
+SET ad_campaign_id = 3
+WHERE date >= '2015-12-15';
+\q
+\d user
+\d auth_user
+\q
+select count(*) from event_raw where name in ('click_campaign', 'view_campaign') and json_extract_path_text(event_raw.properties, 'ad_campaign_id') is null;
+select count(*) from event_raw where name in ('click_campaign', 'view_campaign') and json_extract_path_text(event_raw.properties, 'ad_campaign_id') is not null;
+select json_extract_path_text(event_raw.properties, 'ad_campaign_id') as ad_campaign_id from event_raw limit 10; 
+select count(*) from event_raw where name in ('click_campaign', 'view_campaign') and json_extract_path_text(event_raw.properties, 'ad_campaign_id') is not null and json_extract_path_text(event_raw.properties, 'ad_campaign_id') <> '';
+select count(*) from event_raw where name in ('click_campaign', 'view_campaign') and json_extract_path_text(event_raw.properties, 'ad_campaign_id') is not null and json_extract_path_text(event_raw.properties, 'ad_campaign_id') <> '';
+\q
+select count(*) from event_raw where name in ('click_campaign', 'view_campaign') and json_extract_path_text(event_raw.properties, 'ad_campaign_id') is not null and json_extract_path_text(event_raw.properties, 'ad_campaign_id') <> '';
+select count(*) from event_raw where name in ('click_campaign', 'view_campaign') and json_extract_path_text(event_raw.properties, 'ad_campaign_id') is not null and json_extract_path_text(event_raw.properties, 'ad_campaign_id') = '';
+select count(*) from event_raw where name in ('click_campaign', 'view_campaign') and (json_extract_path_text(event_raw.properties, 'ad_campaign_id') is null) or (json_extract_path_text(event_raw.properties, 'ad_campaign_id') = '');
+select count(*) from event_raw where name in ('click_campaign', 'view_campaign') and json_extract_path_text(event_raw.properties, 'ad_campaign_id') = '';
+\q
+\d device_raw;
+\q
+\d recipe
+select count(*) 
+from event_raw 
+inner join recipe on event_raw.recipe_id = recipe.id 
+where server_timestamp_v2 > getdate() - interval '1 week'
+and server_timestamp_v2 < getdate()
+and recipe.publisher_id = 22;
+select count(*) 
+from event_raw 
+inner join recipe on event_raw.recipe_id = recipe.id 
+where server_timestamp_v2 > getdate() - interval '1 month'
+and server_timestamp_v2 < getdate()
+and recipe.publisher_id = 22;
+select count(*) 
+from event_raw 
+inner join recipe on event_raw.recipe_id = recipe.id 
+where server_timestamp_v2 > getdate() - interval '2 months'
+and server_timestamp_v2 < getdate()
+and recipe.publisher_id = 22;
+select count(*) 
+from event_raw 
+inner join recipe on event_raw.recipe_id = recipe.id 
+where server_timestamp_v2 > getdate() - interval '7 days'
+and server_timestamp_v2 < getdate()
+and recipe.publisher_id = 22;
+select name from publisher where id=22;
+select properties from event_raw where name='view_button';
+select properties from event_raw where name='view_button' limit 1;
+select properties from event_raw where name='view_button' limit 10;
+select count(*) 
+from event_raw 
+inner join recipe on event_raw.recipe_id = recipe.id 
+where server_timestamp_v2 > getdate() - interval '1 week'
+and server_timestamp_v2 < getdate()
+and recipe.publisher_id = 498;
+\q
+\d auth_user;
+\q
+\d django_migrations
+select name from django_migrations order by applied desc limit 8;
+\q
+COPY publisher from '~/Desktop/publisher.csv';
+\copy publisher from '~/Desktop/publisher.csv';
+\d publisher
+\copy publisher from '~/Desktop/publisher2.csv';
+\copy publisher from '~/Desktop/publisher2.csv';
+\copy publisher from '~/Desktop/publisher2.csv';
+\copy publisher from '~/Desktop/publisher2.csv';
+\q
+\copy publisher from '~/Desktop/publisher2.csv';
+\copy publisher from '~/Desktop/publisher2.csv';
+truncate publisher;
+truncate publisher cascade;
+select count(*) from recipe_tags;
+select count(*) from setting;
+\copy publisher from '~/Desktop/publisher2.csv';
+\d publi
+\d publisher
+\copy publisher from '~/Desktop/publisher2.csv';
+\copy publisher from '~/Desktop/publisher2.csv';
+\copy publisher from '~/Desktop/publisher2.csv';
+\copy publisher from '~/Desktop/publisher2.csv';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\d
+\l
+\connect new_chicory_backup
+\d
+selec * from django_migrations order by applied desc limit 10;
+select * from django_migrations order by applied desc limit 10;
+\connect chicory_backup2 
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+select * from publisher_health;
+\copy publisher_health from '~/Desktop/publisher_health.csv' delimiter ',' null as '';
+truncate publisher_health;
+update publisher_health set id=3 where name='Onboarding';
+select * from publisher_health where id=3;
+update publisher_health set id=3 where name='Onboarding';
+\d publisher_health
+update publisher_health set id='3' where name='Onboarding';
+\d publisher;
+truncate publisher_health;
+select * from publisher_health;
+select * from publisher;
+select * from publisher_health;
+truncate publisher_health;
+truncate publisher_health cascade;
+\copy publisher_health from '~/Desktop/publisher_health.csv' delimiter ',' null as '';
+\copy publisher from '~/Desktop/publisher2.csv' delimiter ',' null as '';
+\copy recipe from '~/Desktop/recipe.csv' delimiter ',' null as '';
+\copy recipe from '~/Desktop/recipe.csv' delimiter ',' null as '';
+\copy recipe from '~/Desktop/recipe.csv' FORMAT csv delimiter ',' null as '';
+\copy recipe from '~/Desktop/recipe.csv' FORMAT csv;
+\copy recipe from '~/Desktop/recipe.csv' format csv;
+\copy recipe from '~/Desktop/recipe.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\d recipe_ingredient
+select * from recipe_ingredient limit 10;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '';
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '';
+select * from django_migrations order by applied desc limit 10;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '';
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '';
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\copy recipe_ingredient from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\d recipe_ingredient
+create temp table tmp_ri as select * from recipe_ingredient limit 0;
+\copy tmp_ri from '~/Desktop/recipe_ingredient' delimiter ',' null as '' CSV;
+\copy tmp_ri from '~/Desktop/recipe_ingredient.csv' delimiter ',' null as '' CSV;
+\d tmp_ri;
+insert into recipe_ingredient (select * from tmp_ri where ingredient_id in (select id from ingredient));
+insert into recipe_ingredient (select * from tmp_ri where ingredient_id in (select id from ingredient) and recipe_id in (select id from recipe));
+\copy dashboard_view from '~/Desktop/dashboard_view.csv' delimiter ',' null as '' CSV;
+\copy ad_campaign from '~/Desktop/ad_campaign.csv' delimiter ',' null as '' CSV;
+truncate ad_campaign;
+select * from ad_campaign;
+\copy ad_campaign from '~/Desktop/ad_campaign.csv' delimiter ',' null as '' CSV;
+\copy dashboard_view from '~/Desktop/dashboard_view.csv' delimiter ',' null as '' CSV;
+select count(*) from dashboard_view;
+\q
+select * from dashboard_view limit 10;
+\d publisher_issue
+alter table publisher_issue rename deviation to deviations;
+\d publisher_issue;
+\copy setting from '~/Desktop/setting.csv' DELIMITER ',' CSV;
+select id from recipe where name='Almond Apple Custard Tart';
+select id from recipe where name like '%Almond%Apple';
+select id from recipe where name like '%Almond%';
+select id from recipe where name like '%Tart%';
+select id from recipe where name like '%Custard Tart%';
+select id, name from recipe where name like '%Custard Tart%';
+\d recipe;
+select count(*) from recipe where hero_image_uri is not null;
+select id, name, hero_image_uri from recipe where name like '%Custard Tart%';
+select id, name, hero_image_uri from recipe where name like '%CTart%';
+select id, name, hero_image_uri from recipe where name like '%Tart%';
+select id, name, hero_image_uri from recipe where name like '%Tart%' and hero_image_uri is not null;
+select id, name, hero_image_uri from recipe where name like '%Tart%' and hero_image_uri <> '';
+select id, name, hero_image_uri from recipe where hero_image_uri <> '' limit 20;
+\copy setting from '~/Desktop/setting.csv' DELIMITER ',' CSV;
+\copy setting from '~/Desktop/setting.csv' DELIMITER ',' CSV;
+select id, name from publisher where if not in (select publisher_id from publisher_issue) limit 20;
+select id, name from publisher where id not in (select publisher_id from publisher_issue) limit 20;
+\d
+\dt
+truncate publisher_issue;
+select * from source;
+select * from publisher limit 10;
+\d publisher;
+\d partner
+select source_comments from partner limit 50;
+select source_comments from partner;
+\dt
+select * django_fsm_log_statelog limit 10;
+select * from django_fsm_log_statelog limit 10;
+truncate publisher_issue;
+truncate publisher_issue;
+truncate publisher_issue;
+truncate publisher_issue;
+truncate publisher_issue;
+\d publisher
+select * from source;
+\d django_fsm_log_statelog
+\d partner
+\d recipe
+select * from publisher_hostnames where hostname='http://stetted.com';
+select * from publisher_hostname where hostname='http://stetted.com';
+select * from publisher_hostname where hostname='stetted.com';
+select * from publisher_hostname where hostname='www.stetted.com';
+\dt
+select if from publisher order by id desc limit 10;
+select id from publisher order by id desc limit 10;
+select * from publisher where id=2200;
+select * from auth_user;
+truncate user_profile;
+truncate app_user_profile;
+\d
+truncate app_userprofile;
+truncate user
+;
+truncate auth_user;
+select * from auth_user;
+delete * from auth_user where id = 1;
+delete from auth_user where id = 1;
+delete from auth_user where id = 6;
+\s auth_user
