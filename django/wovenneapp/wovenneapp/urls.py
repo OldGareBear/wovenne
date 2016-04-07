@@ -31,5 +31,8 @@ urlpatterns = patterns(
     # App
     url(r'^app/', include('app.urls')),
 
+    (r'^facebook/', include('django_facebook.urls')),
+    (r'^accounts/', include('django_facebook.auth_urls')),
+
 ) + static('/static/', document_root=settings.STATIC_ROOT) \
   + static('/media/', document_root=settings.MEDIA_ROOT)

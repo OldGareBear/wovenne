@@ -8,6 +8,7 @@ from django.conf import settings
 
 from app.models import Listing, UserProfile
 from facebook import FacebookAPI
+from utils.thread import in_new_thread
 
 
 def login(request):
@@ -72,7 +73,7 @@ def delete_listing(request):
 
 def _get_access_token(request):
     short_lived_token = request.POST.get('authResponse[accessToken]')
-    fb = FacebookAPI(settings.FB_CLIENT_ID, settings.FB_SECRET)
+    fb = FacebookAPI(settings.FACEBOOK_APP_ID, settings.FACEBOOK_APP_SECRET)
     return fb.get_long_lived_token(short_lived_token)
 
 def _get_or_create_user(request, access_token):
@@ -83,7 +84,12 @@ def _get_or_create_user(request, access_token):
         # name = post_data['name'][0]
         user = User.objects.filter(username=facebook_id).first() or User.objects.create_user(facebook_id)
         user_profile = UserProfile.objects.create(user_id=user.id, facebook_id=facebook_id, facebook_token=access_token)
+        _pull_user_profile(request, user_profile)
+
     return user_profile
+
+@in_new_thread
+def _pull_user_profile(request, user_profile):
 
 
 

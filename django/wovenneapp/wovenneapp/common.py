@@ -6,6 +6,7 @@ TEMPLATES = {
         'django.template.context_processors.request',
         'django.template.auth.context_processors.auth',
         'django.contrib.messages.context_processors.messages',
+        'django_facebook.context_processors.facebook',
     ),
     'TEMPLATE_LOADERS': [
         'django.template.loaders.filesystem.Loader',
@@ -42,7 +43,10 @@ INSTALLED_APPS = [
     'pages',
 
     # Storage backends.
-    'storages'
+    'storages',
+
+    # Facebook
+    'django_facebook',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -55,6 +59,14 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django_facebook.auth_backends.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
+AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
 
 ROOT_URLCONF = 'wovenneapp.urls'
 
